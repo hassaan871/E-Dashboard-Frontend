@@ -4,6 +4,7 @@ import Products from "./components/products/Products";
 import AddProducts from "./components/addProducts/AddProducts";
 import UpdateProducts from "./components/updateProducts/UpdateProducts";
 import Profile from "./components/profile/Profile";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/update-products" element={<UpdateProducts/>} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
