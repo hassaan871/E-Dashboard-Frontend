@@ -5,11 +5,12 @@ import AddProducts from "./components/addProducts/AddProducts";
 import UpdateProducts from "./components/updateProducts/UpdateProducts";
 import Profile from "./components/profile/Profile";
 import Footer from "./components/footer/Footer";
+import Signup from "./components/authentication/signup/Signup";
 
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/products" element={<Products />} />
@@ -18,7 +19,8 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Signup />
     </div>
   );
 }
