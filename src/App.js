@@ -6,6 +6,7 @@ import UpdateProducts from "./components/updateProducts/UpdateProducts";
 import Profile from "./components/profile/Profile";
 import Footer from "./components/footer/Footer";
 import Signup from "./components/authentication/signup/Signup";
+import Login from "./components/authentication/signup/Login";
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter> */}
-      <Signup />
+      {/* <Signup /> */}
+      <Login />
     </div>
   );
 }
