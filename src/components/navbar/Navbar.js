@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useLogout from '../../utils/Logout';
 
 const Navbar = () => {
+  const logout = useLogout()
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -42,7 +45,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <button className="btn btn-outline-danger" type="submit">
+          <button className="btn btn-outline-danger" onClick={logout} type="submit">
             Log Out
           </button>
         </div>
