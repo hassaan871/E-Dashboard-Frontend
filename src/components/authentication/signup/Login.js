@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -17,14 +19,22 @@ const Login = () => {
               headers: { 'Content-Type': 'application/json' }
             });
             
+            const data = await response.json()
+
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            
-            const data = await response.json();
+            if(response.ok){
+                localStorage.setItem("user", JSON.stringify(data))
+                navigate('/products')
+                alert("Login Successful")
+            }
+            // else{
+            //     alert("Enter Valid email")
+            // }
             console.log('Login successful:', data);
         } catch (error) {
-            console.error('Error during signup:', error);
+            console.error('Error during login:', error);
         }
     }
     return (
@@ -60,7 +70,7 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className="d-grid">
-                                    <button type="submit" className="btn btn-primary">Sign Up</button>
+                                    <button type="submit" className="btn btn-primary">Log in</button>
                                 </div>
                             </form>
                         </div>

@@ -11,18 +11,19 @@ import Login from "./components/authentication/signup/Login";
 const App = () => {
   return (
     <div>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Navbar />
         <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/products" element={<Products />} />
           <Route path="/add-products" element={<AddProducts />} />
           <Route path="/update-products" element={<UpdateProducts/>} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
-      </BrowserRouter> */}
-      {/* <Signup /> */}
-      <Login />
+      </BrowserRouter>
     </div>
   );
 }
