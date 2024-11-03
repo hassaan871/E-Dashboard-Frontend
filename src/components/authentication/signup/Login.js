@@ -7,6 +7,13 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
+    useEffect(() => {
+        const auth = localStorage.getItem("user")
+        if(auth){
+          navigate('/products')
+        }
+      }, [])
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.warn('Email:', email);
