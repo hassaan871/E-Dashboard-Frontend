@@ -9,6 +9,23 @@ const Login = () => {
         event.preventDefault();
         console.warn('Email:', email);
         console.warn('Password:', password);
+
+        try {
+            const response = await fetch('http://localhost:8000/api/login', {
+              method: 'POST',
+              body: JSON.stringify({ email, password }),
+              headers: { 'Content-Type': 'application/json' }
+            });
+            
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Login successful:', data);
+        } catch (error) {
+            console.error('Error during signup:', error);
+        }
     }
     return (
         <div className="container mt-5">
