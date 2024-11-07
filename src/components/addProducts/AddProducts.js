@@ -6,7 +6,7 @@ const AddProducts = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [category, setCategory] = useState('')
-    const [userId, setUserId] = useState('6720e62e43aeb10a5d536b4d') //hardcoding userId for the time being
+    const [userId, setUserId] = useState('') 
     const [company, setCompany] = useState('')
 
     const navigate = useNavigate()
@@ -24,6 +24,28 @@ const AddProducts = () => {
         console.warn(`category: ${category}`)
         console.warn(`userId: ${userId}`)
         console.warn(`company: ${company}`)
+
+        setUserId(JSON.parse(localStorage.getItem('user'))._id)
+
+        try{
+            const result = await fetch('http://localhost:8000/api/add-product', {
+                method: 'POST',
+                body: JSON.stringify({name, price, category, company, userId}),
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            });
+
+            if(!result.ok){
+                throw new Error(`HTTP error! Status: ${result.status}`);
+            }
+
+            result = await result.json()
+            console.warn(result)
+        } catch(error){
+            console.error('Error during signup:', error);
+        }
+       
     }
     return (
         <div className="container mt-5">
