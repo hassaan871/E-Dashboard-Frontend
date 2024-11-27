@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import '../../styles/invalid-input.css';
 
 const AddProducts = () => {
 
@@ -8,6 +9,7 @@ const AddProducts = () => {
     const [category, setCategory] = useState('')
     const [userId, setUserId] = useState('') 
     const [company, setCompany] = useState('')
+    const [error, setError] = useState(false)
 
     const navigate = useNavigate()
 
@@ -19,11 +21,17 @@ const AddProducts = () => {
       }, [])
 
     const handleSubmit = async (event) => {
+
+        event.preventDefault();
+
         console.warn(`name: ${name}`)
         console.warn(`price: ${price}`)
         console.warn(`category: ${category}`)
         console.warn(`userId: ${userId}`)
         console.warn(`company: ${company}`)
+
+        if(!name || !price || !category || !company){ setError(true);
+         return false }
 
         setUserId(JSON.parse(localStorage.getItem('user'))._id)
 
@@ -63,10 +71,11 @@ const AddProducts = () => {
                                         type="text"
                                         className="form-control"
                                         id="email"
-                                        placeholder="Enter email"
+                                        placeholder="Enter name"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                     />
+                                    {error && !name && <span className="invalid-input">Enter name to proceed</span>}
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">price</label>
@@ -74,10 +83,12 @@ const AddProducts = () => {
                                         type="text"
                                         className="form-control"
                                         id="email"
-                                        placeholder="Enter email"
+                                        placeholder="Enter price"
                                         value={price}
                                         onChange={(e) => setPrice(e.target.value)}
                                     />
+                                    {error && !price && <span className="invalid-input">Enter price to proceed</span>}
+
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">category</label>
@@ -85,10 +96,12 @@ const AddProducts = () => {
                                         type="text"
                                         className="form-control"
                                         id="email"
-                                        placeholder="Enter email"
+                                        placeholder="Enter category"
                                         value={category}
                                         onChange={(e) => setCategory(e.target.value)}
                                     />
+                                    {error && !category && <span className="invalid-input">Enter category to proceed</span>}
+
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">company</label>
@@ -96,10 +109,11 @@ const AddProducts = () => {
                                         type="text"
                                         className="form-control"
                                         id="email"
-                                        placeholder="Enter email"
+                                        placeholder="Enter company"
                                         value={company}
                                         onChange={(e) => setCompany(e.target.value)}
                                     />
+                                    {error && !company && <span className="invalid-input">Enter company to proceed</span>}
                                 </div>
                                
                                 <div className="d-grid">
